@@ -25,9 +25,15 @@
 │   ├── routers.py      # Основные ручки API
 ├── queries
 │   ├── orm.py          # Запросы через orm к базе
+├── alembic             # Миграции Alembic
+│   ├── migrations          
+│       ├── versions    # Каталог миграций
+│       ├── env.py      # Настройка миграций
+│       ├── script.py.mako
 ├── tests
 │   ├── __init__.py     
 │   ├── test_api.py     # Тесты API
+├── alembic.ini         # Конфигурации Alembic
 ├── Dockerfile          # Образ для приложения
 ├── docker-compose.yml  # Компоновка сервисов Docker
 ├── .env                # Переменные окружения
@@ -64,6 +70,13 @@ cd название папки
 Для запуска всех сервисов используйте команду:
 <pre>
 docker-compose up --build
+</pre>
+
+4. Миграции базы данных
+Приложение использует Alembic для управления миграциями базы данных. 
+При первом запуске миграции будут применены автоматически. Если необходимо применить миграции вручную, выполните команду:
+<pre>
+docker-compose exec app alembic upgrade head
 </pre>
 После запуска:
 
